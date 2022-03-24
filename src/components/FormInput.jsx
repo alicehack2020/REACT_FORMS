@@ -2,16 +2,7 @@ import React, { useState } from 'react'
 
 const FormInput = (probs) => {
 
-    // const [userName,setUserName]=useState()
-    // const [userAge,setUserAge]=useState()
-    // const [userAddress,setUserAddress]=useState()
-    // const [userDepartment ,setUserDepartment ]=useState()
-    // const [userSalary,setUserSalary]=useState()
-    // const [userMarital ,setUserMarital ]=useState()
-  
     const [formData,setFormData]=useState({})
-
-
     const handdle=(e)=>{
         const {name,value}=e.target;
         if(e.target.type=="checkbox")
