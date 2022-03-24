@@ -13,16 +13,28 @@ const FormInput = (probs) => {
 
     const addToData=()=>
     {
+        var status=""
+        if(userMarital==true)
+        {
+            status="YES"  
+        }
+        else{
+            status="NO" 
+        }
+        
+
         var item={
             name:userName,
             age:userAge,
             address:userAddress,
             department:userDepartment,
             salary:userSalary,
-            marital:userMarital
+            marital:status
         }
 
-       probs.Data(item);
+      probs.Data(item);
+
+     console.log(userMarital);
         
        
     }
@@ -43,7 +55,7 @@ const FormInput = (probs) => {
         <br />
         <input type="name" placeholder='userSalary' value={userSalary} onChange={(e)=>setUserSalary(e.target.value)}/>
         <br />
-        <input type="" placeholder='userMarital' value={userMarital} onChange={(e)=>setUserMarital(e.target.value)}/>
+        <input type="checkbox" placeholder='userMarital' checked={userMarital} onChange={(e)=>setUserMarital(e.target.checked)}/>
         <br />
         <button onClick={addToData}>Submit</button>
     </div>
