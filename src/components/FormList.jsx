@@ -1,24 +1,42 @@
 import React, { useEffect, useState } from 'react'
 
 const FormList = (probs) => {
+  
 var info=JSON.parse(localStorage.getItem("info"))
+if(info==null)
+{
+    localStorage.setItem("info",JSON.stringify([]))
+}
+else
+{
+    info=JSON.parse(localStorage.getItem("info"))
+} 
 
-useEffect(()=>{
-    loadData()
- },[])
+
+//const [userData,setUserData]=useState(probs.newdata)
+ //console.log(probs.newdata);
+ //console.log(info);
+
+
+// useEffect(()=>{
+//    loadData()
+//  },userData)
  
 
- const loadData=()=>{
-    if(info==null)
-    {
-      localStorage.setItem("info",JSON.stringify([]))
-     }
-    else
-    {
-      info=JSON.parse(localStorage.getItem("info"))
-      console.log(info);
-    } 
- }
+//  const loadData=()=>{
+//     if(info==null)
+//     {
+//       localStorage.setItem("info",JSON.stringify([]))
+//      }
+//     else
+//     {
+//       info=JSON.parse(localStorage.getItem("info"))
+//       //  console.log("info",info);
+//     } 
+//     loadData()
+//  }
+
+//  console.log("info",info);
   
 
  
