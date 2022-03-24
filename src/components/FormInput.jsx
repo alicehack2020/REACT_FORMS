@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const FormInput = () => {
+const FormInput = (probs) => {
 
     const [userName,setUserName]=useState()
     const [userAge,setUserAge]=useState()
@@ -9,13 +9,7 @@ const FormInput = () => {
     const [userSalary,setUserSalary]=useState()
     const [userMarital ,setUserMarital ]=useState()
   
-    var info=JSON.parse(localStorage.getItem("info"))
-    if(info==null)
-    {
-      localStorage.setItem("info",JSON.stringify([]))
-    }
-    info=JSON.parse(localStorage.getItem("info"))
-
+   
 
     const addToData=()=>
     {
@@ -28,11 +22,9 @@ const FormInput = () => {
             marital:userMarital
         }
 
+       probs.Data(item);
         
-        
-        var listData=[...info,item]
-      
-        localStorage.setItem("info",JSON.stringify(listData))
+       
     }
 
   return (
@@ -44,8 +36,7 @@ const FormInput = () => {
         <input type="name" placeholder='userAddress' value={userAddress} onChange={(e)=>setUserAddress(e.target.value)}/>
         <br />
         <select value={userDepartment} onChange={(e)=>setUserDepartment(e.target.value)} >
-                <option value="">Select Department</option>
-                <option value="designer">designer</option>
+                 <option value="designer">designer</option>
                 <option value="testing">testing</option>
         </select>
         {/* <input type="name" placeholder='userDepartment' value={userDepartment} onChange={(e)=>setUserDepartment(e.target.value)}/> */}

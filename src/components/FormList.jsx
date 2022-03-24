@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const FormList = () => {
+const FormList = (probs) => {
+var info=JSON.parse(localStorage.getItem("info"))
 
-    var info=JSON.parse(localStorage.getItem("info"))
+useEffect(()=>{
+    loadData()
+ },[])
+ 
 
+ const loadData=()=>{
     if(info==null)
     {
       localStorage.setItem("info",JSON.stringify([]))
-   
-    }
-    info=JSON.parse(localStorage.getItem("info"))
-    console.log(info);
+     }
+    else
+    {
+      info=JSON.parse(localStorage.getItem("info"))
+      console.log(info);
+    } 
+ }
+  
+
+ 
+ 
   return(
     <div>
         <table>
