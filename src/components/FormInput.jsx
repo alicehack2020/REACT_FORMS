@@ -9,13 +9,16 @@ const FormInput = (probs) => {
     // const [userSalary,setUserSalary]=useState()
     // const [userMarital ,setUserMarital ]=useState()
   
-    const [formData,setFormData]=useState([])
+    const [formData,setFormData]=useState({})
 
 
     const handdle=(e)=>{
         const {name,value}=e.target;
-
-        setFormData((prev)=>({...prev, [name]:value}));
+        if(e.target.type=="checkbox")
+        {
+          console.log("hello");
+        } 
+        setFormData((prev)=>({...prev, [name]:formData.userMarital?false:true}));
     }
    
     const {userName,userAge,userAddress,userDepartment,userSalary,userMarital}=formData

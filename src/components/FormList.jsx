@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
-
 const FormList = (probs) => {
   
-var info=JSON.parse(localStorage.getItem("info"))
-if(info==null)
-{
-    localStorage.setItem("info",JSON.stringify([]))
-}
-else
-{
-    info=JSON.parse(localStorage.getItem("info"))
-} 
+var info=probs.newdata;
+// if(info==null)
+// {
+//     localStorage.setItem("info",JSON.stringify([]))
+// }
+// else
+// {
+//     info=JSON.parse(localStorage.getItem("info"))
+// } 
 
 
 //const [userData,setUserData]=useState(probs.newdata)
