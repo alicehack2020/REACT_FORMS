@@ -1,68 +1,96 @@
-import React, { useState } from 'react'
+import React from "react";
 
-const FormInput = (probs) => {
+const defaultValue = {
+  username: "",
+  userage: "",
+  useraddress: "",
+  userdepartment: "designer",
+  usersalary: "",
+  usermarital: false
+};
 
-    const [formData,setFormData]=useState({})
-    const handdle=(e)=>{
-        const {name,value}=e.target;
-        if(e.target.type=="checkbox")
-        {
-          console.log("hello");
-        } 
-        setFormData((prev)=>({...prev, [name]:formData.userMarital?false:true}));
+const FormInput = (props) => {
+  const [formData, setFormData] = React.useState(defaultValue);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setFormData((prevState) => ({ ...prevState, usermarital: checked }));
+    } else {
+      setFormData((prevState) => ({ ...prevState, [name]: value }));
     }
-   
-    const {userName,userAge,userAddress,userDepartment,userSalary,userMarital}=formData
+  };
 
-    const addToData=()=>
-    {
-        var status=""
-        if(userMarital==true)
-        {
-            status="YES"  
-        }
-        else{
-            status="NO" 
-        }
-        
-        
-        var item={
-            name: userName,
-            age: userAge,
-            address: userAddress,
-            department: userDepartment,
-            salary: userSalary,
-            marital:status
-        }
+  const handleAdd = () => {
+    console.log(formData);
+    props.addData(formData);
+  };
 
-      probs.Data(item);
-      console.log(userMarital);
-        
-       
-    }
+  const {
+    username,
+    userage,
+    useraddress,
+    userdepartment,
+    usersalary,
+    usermarital
+  } = formData;
 
   return (
     <div>
-        <input type="name" onChange={handdle} placeholder='userName' value={userName} name="userName"/>
-        <br />
-        <input type="name" onChange={handdle}  placeholder='userAge' value={userAge}  name="userAge" />
-        <br />
-        <input type="name" onChange={handdle}  placeholder='userAddress' value={userAddress}  name="userAddress"/>
-        <br />
-        <select value={userDepartment} name="userDepartment"  onChange={handdle}>
-                 <option value="designer">designer</option>
-                <option value="testing">testing</option>
-        </select>
-        {/* <input type="name" placeholder='userDepartment' value={userDepartment} onChange={(e)=>setUserDepartment(e.target.value)}/> */}
-        <br />
-        <input type="name" placeholder='userSalary' onChange={handdle} value={userSalary}  name="userSalary"/>
-        <br />
-        <label>Marital Status</label>
-        <input type="checkbox" placeholder='userMarital' onChange={handdle} checked={userMarital}  name="userMarital"/>
-        <br />
-        <button onClick={addToData}>Submit</button>
+      <input
+        type="text"
+        placeholder="userName"
+        onChange={handleChange}
+        value={username}
+        name="username"
+      />
+      <br />
+      <input
+        type="text"
+        placeholder="userAge"
+        value={userage}
+        name="userage"
+        onChange={handleChange}
+      />
+      <br />
+      <input
+        type="text"
+        placeholder="userAddress"
+        onChange={handleChange}
+        value={useraddress}
+        name="useraddress"
+      />
+      <br />
+      <select
+        value={userdepartment}
+        onChange={handleChange}
+        name="userdepartment"
+      >
+        <option value="designer">designer</option>
+        <option value="testing">testing</option>
+      </select>
+      {/* <input type="name" placeholder='userDepartment' value={userDepartment} onChange={(e)=>setUserDepartment(e.target.value)}/> */}
+      <br />
+      <input
+        type="text"
+        placeholder="usersalary"
+        onChange={handleChange}
+        value={usersalary}
+        name="usersalary"
+      />
+      <br />
+      <label>Marital Status</label>
+      <input
+        type="checkbox"
+        placeholder="userMarital"
+        onChange={handleChange}
+        checked={usermarital}
+        name="usermarital"
+      />
+      <br />
+      <button onClick={handleAdd}>Submit</button>
     </div>
-  )
-}
+  );
+};
 
-export default FormInput
+export default FormInput;

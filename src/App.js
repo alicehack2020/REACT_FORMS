@@ -1,47 +1,67 @@
-import FormInput from './components/FormInput';
-import FormList from './components/FormList';
-import { useEffect, useState } from 'react';
-function App() {
+import React from "react";
+import FormInput from "./components/FormInput";
+import FormList from "./components/FormList";
+import "./index.css";
 
-const [trigger,setTrigger]=useState([])
-console.log("app called");
+// for dummy purpose
 
-
- 
-useEffect(()=>{
-  var info=JSON.parse(localStorage.getItem("info"))
-  if(info==null)
-  {
-    localStorage.setItem("info",JSON.stringify([]))
-  }
-  info=JSON.parse(localStorage.getItem("info"))
-  setTrigger(info)
-},[])
-
-// useEffect(()=>{
-//   var info=JSON.parse(localStorage.getItem("info"))
-//   if(info==null)
+// const dataArr = [
 //   {
-//     localStorage.setItem("info",JSON.stringify([]))
+//     id: 1,
+//     username: "rohan",
+//     userage: "20",
+//     useraddress: "dummy",
+//     userdepartment: "science",
+//     usersalary: "2000",
+//     usermarital: false
+//   },
+//   {
+//     id: 2,
+//     username: "xoxo",
+//     userage: "20",
+//     useraddress: "dummy",
+//     userdepartment: "marketing",
+//     usersalary: "4000",
+//     usermarital: false
+//   },
+//   {
+//     id: 3,
+//     username: "lmao",
+//     userage: "20",
+//     useraddress: "dummy",
+//     userdepartment: "hr",
+//     usersalary: "7500",
+//     usermarital: false
 //   }
-//   info=JSON.parse(localStorage.getItem("info"))
-//   setTrigger(info)
-// },[trigger])
+// ];
 
-const userData=(data)=>{
-   var info=JSON.parse(localStorage.getItem("info"))
-   var listData=[...info,data]   
-  localStorage.setItem("info",JSON.stringify(listData))
-  setTrigger(data)
- }
+export default function App() {
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    let arr =
+      localStorage.getItem("user-array") == null
+        ? []
+        : JSON.parse(localStorage.getItem("user-array"));
+    setData(arr);
+  }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem("user-array", JSON.stringify(data));
+  }, [data]);
+
+  const addData = (item) => {
+    const newObj = { ...item, id: data.length + 1 };
+    setData((prevState) => [...data, newObj]);
+    // localStorage.setItem("user-array", JSON.stringify(data));
+  };
 
   return (
-    <div>
-       <FormInput Data={userData}/>
-       <FormList newdata={trigger}/> 
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <FormInput addData={addData} />
+      <FormList info={data} />
     </div>
-   
   );
 }
-
-export default App
